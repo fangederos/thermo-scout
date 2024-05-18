@@ -18,7 +18,7 @@ def main():
         print(read_sensors())
 
         # Wait for a short interval before refreshing
-        time.sleep(2)  # Adjust the refresh interval as needed
+        time.sleep(0.1)  # Adjust the refresh interval as needed
 
 if __name__ == "__main__":
     main()
