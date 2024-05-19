@@ -27,6 +27,6 @@ The script will continuously display temperature readings in your terminal windo
 - Fixed issue where the program crashed upon resizing the window.
 - Added a launcher for easier execution.
 ### Useful Links
-[lm_sensors - ArchWiki](https://wiki.archlinux.org/title/lm_sensors)
-[lm_sensors - HWMon Wiki](https://hwmon.wiki.kernel.org/lm_sensors)
-[lm-sensors - GitHub](https://github.com/lm-sensors/lm-sensors)
+- [lm_sensors - ArchWiki](https://wiki.archlinux.org/title/lm_sensors)
+- [lm_sensors - HWMon Wiki](https://hwmon.wiki.kernel.org/lm_sensors)
+- [lm-sensors - GitHub](https://github.com/lm-sensors/lm-sensors)
