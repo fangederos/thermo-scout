@@ -1,4 +1,5 @@
 import subprocess
+import os
 import time
 
 def read_sensors():
@@ -12,7 +13,7 @@ def read_sensors():
 def main():
     while True:
         # Clear the screen
-        print("\033c", end="")
+        os.system('clear')
 
         # Read and print sensor output
         print(read_sensors())
@@ -22,4 +23,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
