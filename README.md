@@ -16,19 +16,14 @@ Thermo Scout is a Python script designed to display real-time temperature readin
    ```
    git clone https://github.com/matheuslazzarotto/thermo-scout.git
    ```
-2. Navigate to the project directory:
-   ```
-   cd thermo-scout
-   ```
-
 ### Usage
 
-1. Run the script:
+1. Go to the executable's directory and run it:
    ```
-   python thermo_scout.py
+   cd thermo-scout/dist
+   ./thermo-scout
    ```
-2. The script will continuously display temperature readings in your terminal window.
-3. Use Ctrl+C to terminate the process.
+The script will continuously display temperature readings in your terminal window. Use Ctrl+C to terminate the process.
 
 ### Customization
 
