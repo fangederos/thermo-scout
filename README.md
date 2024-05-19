@@ -1,5 +1,5 @@
 # thermo-scout 1.1.0
-Thermo Scout displays real-time temperature readings from various parts of a computer using the `sensors` command.
+thermo-scout displays real-time temperature readings from various parts of a computer using the `sensors` command.
 ### Features
 
 - Displays the output of the `sensors` command.
