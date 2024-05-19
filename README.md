@@ -1,8 +1,5 @@
 # thermo-scout 1.1.0
-thermo-scout displays real-time temperature readings from various parts of a computer using the `sensors` command.
-### Features
-
-- Displays the output of the `sensors` command.
+Thermo Scout utilizes the `sensors` command, which is part of the [`lm-sensors`](https://github.com/lm-sensors/lm-sensors) package, to access and display real-time temperature sensor data retrieved from hardware monitoring sensors integrated into computer components. This command gathers temperature readings from sensors embedded in the CPU, motherboard, graphics card, and other peripheral devices. Thermo Scout provides a convenient interface to monitor and visualize these temperature readings in real-time within the terminal environment. You can more information on `lm-sensors` [here](https://hwmon.wiki.kernel.org/lm_sensors?s[]=lm-sensors).
 
 ### Prerequisites
 
