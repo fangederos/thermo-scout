@@ -1,6 +1,9 @@
 import subprocess
 import curses
 import time
+import signal
+
+resize_flag = False
 
 def read_sensors():
     try:
@@ -10,12 +13,26 @@ def read_sensors():
     except subprocess.CalledProcessError:
         return "Error: Failed to run 'sensors' command."
 
+def resize_handler(signum, frame):
+    global resize_flag
+    resize_flag = True
+
 def main(stdscr):
+    global resize_flag
+
     # Initialize curses
     curses.curs_set(0)
     stdscr.nodelay(1)  # Make getch() non-blocking
 
+    # Set up signal handler for window resize
+    signal.signal(signal.SIGWINCH, resize_handler)
+
     while True:
+        if resize_flag:
+            stdscr.clear()
+            stdscr.refresh()
+            resize_flag = False
+
         # Get terminal dimensions
         height, width = stdscr.getmaxyx()
 
@@ -25,11 +42,14 @@ def main(stdscr):
         # Clear the screen
         stdscr.clear()
 
+        # Debug: Print the terminal dimensions and number of lines
+        #stdscr.addstr(0, 0, f"Height: {height}, Width: {width}, Lines: {len(sensors_output.splitlines())}")
+
         # Ensure the output fits in the screen
         lines = sensors_output.splitlines()
         for i, line in enumerate(lines):
-            if i < height - 1:  # Leave a line for potential user input
-                stdscr.addstr(i, 0, line[:width - 1])  # Ensure line fits in width
+            if i < height - 2:  # Leave two lines for potential user input and debugging info
+                stdscr.addstr(i + 1, 0, line[:width - 1])  # Ensure line fits in width
 
         # Refresh the screen
         stdscr.refresh()
