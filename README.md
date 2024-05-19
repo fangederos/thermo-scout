@@ -1,9 +1,8 @@
-# thermo-scout 1.0.0
-Thermo Scout is a Python script designed to display real-time temperature readings from various parts of a computer using the `sensors` command. Currently, the script continuously refreshes the screen to show updated temperature information.
-
+# thermo-scout 1.1.0
+Thermo Scout displays real-time temperature readings from various parts of a computer using the `sensors` command.
 ### Features
 
-- Displays temperature readings from the `sensors` command.
+- Displays the output of the `sensors` command.
 
 ### Prerequisites
 
@@ -33,3 +32,11 @@ The script will continuously display temperature readings in your terminal windo
 ### Troubleshooting
 
 - If you encounter any issues with the script, ensure that the `sensors` command is working correctly on your system.
+
+### Version History
+
+- **1.1.0**:
+- Reduced sleep value for faster screen refresh.
+- Fixed unintended flickering screen behavior by adding the curses library.
+- Fixed issue where the program crashed upon resizing the window.
+- Added a launcher for easier execution.
