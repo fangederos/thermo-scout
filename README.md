@@ -1,4 +1,4 @@
-# Temperature Monitor 1.0.0
+# thermo-scout 1.0.0
 Thermo Scout is a Python script designed to display real-time temperature readings from various parts of a computer using the `sensors` command. Currently, the script continuously refreshes the screen to show updated temperature information.
 
 ### Features
@@ -25,14 +25,14 @@ Thermo Scout is a Python script designed to display real-time temperature readin
 
 1. Run the script:
    ```
-   python thermo-scout.py
+   python thermo_scout.py
    ```
 2. The script will continuously display temperature readings in your terminal window.
 3. Use Ctrl+C to terminate the process.
 
 ### Customization
 
-- You can adjust the refresh interval in the `main()` function of the `temperature_monitor.py` script by changing the value passed to `time.sleep()`.
+- You can adjust the refresh interval in the `main()` function of the `thermo_scout.py` script by changing the value passed to `time.sleep()`.
 - For any additional customizations, you can modify the script as needed.
 
 ### Troubleshooting
