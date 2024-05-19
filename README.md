@@ -8,7 +8,7 @@ Thermo Scout is a Python script designed to display real-time temperature readin
 ### Prerequisites
 
 - Python 3.x installed on your system.
-- The `lm-sensors` package installed to enable temperature monitoring.
+- The [`lm-sensors`](https://github.com/lm-sensors/lm-sensors) package installed to enable temperature monitoring.
 
 ### Installation
 
@@ -38,7 +38,3 @@ Thermo Scout is a Python script designed to display real-time temperature readin
 ### Troubleshooting
 
 - If you encounter any issues with the script, ensure that the `sensors` command is working correctly on your system.
-
-### License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
