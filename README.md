@@ -1,3 +1,5 @@
+##   Warning: current build is still very buggy
+
 # thermo-scout 1.1.0
 thermo scout calls the [`sensors`](https://www.commandlinux.com/man-page/man1/sensors.1.html) command, which is part of the [`lm-sensors`](https://archlinux.org/packages/?name=lm_sensors) package, to access and display real-time temperature sensor data retrieved from hardware monitoring sensors integrated into computer components. This command gathers temperature readings from sensors embedded in the CPU, motherboard, graphics card, and other peripheral devices. Thermo Scout provides a convenient interface to monitor and visualize these temperature readings in real-time within the terminal environment.
 ### Prerequisites
