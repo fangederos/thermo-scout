@@ -1,4 +1,4 @@
-###   WARNING! Current build has formatting due to variance in window size. *Be sure open it to run it on a maximized window.*
+###   WARNING! *Be sure open it to run it on a maximized window.* Current build struggles with formatting due to variance in window sizes.
 
 # thermo-scout 1.1.0
 
