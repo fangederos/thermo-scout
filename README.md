@@ -13,11 +13,11 @@ thermo scout calls the [`sensors`](https://www.commandlinux.com/man-page/man1/se
 
 ### Installation and Usage
 
-1. Clone the repository:
+- Clone the repository:
    ```
    git clone https://github.com/matheuslazzarotto/thermo-scout.git
    ```
-1. Go to the executable's directory and run it:
+- Go to the executable's directory and run it:
    ```
    cd thermo-scout/dist
    ./thermo-scout
@@ -48,8 +48,8 @@ The script will continuously display temperature readings in your terminal windo
 
 ### To-do
 
-1- In effort to keep thermo scout a lightweight program, I will convert the entire codebase (or as much as possible) to C. The current python build is so bloated that the executable is actually larger than the core program itself.
-2- Proper formatting of the information displayed, instead of merely printing the output of `sensors`, which is not exactly very human-readable.
-3- Implement TUI and GUI for smoother use-experience.
+- In effort to keep thermo scout a lightweight program, I will convert the entire codebase (or as much as possible) to C. The current python build is so bloated that the executable is actually larger than the core program itself.
+- Proper formatting of the information displayed, instead of merely printing the output of `sensors`, which is not exactly very human-readable.
+- Implement TUI and GUI for smoother use-experience.
 
 ### [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html)
