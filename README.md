@@ -6,6 +6,7 @@ thermo scout calls the [`sensors`](https://www.commandlinux.com/man-page/man1/se
 
 ### Prerequisites
 
+- Most (if not any) Linux distribution will do.
 - Python 3.x installed on your system.
 - The [`lm-sensors`](https://archlinux.org/packages/?name=lm_sensors) package installed to enable temperature monitoring.
 - be sure to run `sensors-detect` before trying to read use this program, and be careful with it too. Refer to the Arch Wiki's `lm-sensors` page.
