@@ -15,7 +15,7 @@
 - Go to the executable's directory, compile the program and run it:
    ```
    cd thermo-scout/
-    gcc -o thermo-scout thermo-scout.c -lncurses
+   gcc -o thermo-scout thermo-scout.c -lncurses
    ./thermo-scout
    ```
 The script will continuously display temperature readings in your terminal window. Use `Ctrl+C` to terminate the process.
