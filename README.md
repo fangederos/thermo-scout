@@ -50,5 +50,3 @@ The script will continuously display temperature readings in your terminal windo
 ~~- In effort to keep thermo scout a lightweight program, I will convert the entire codebase (or as much as possible) to C. The current python build is so bloated that the executable is actually larger than the core program itself.~~
 - Proper formatting of the information displayed, instead of merely printing the output of `sensors`, which is not exactly very human-readable.
 - Implement TUI and GUI for smoother use-experience.
-
-### [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html)
