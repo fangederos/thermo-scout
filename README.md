@@ -1,4 +1,4 @@
-# thermo-scout 1.3.0
+# thermo-scout 0.3.0
 
 `thermo-scout` calls the [`sensors`](https://www.commandlinux.com/man-page/man1/sensors.1.html) command (part of the [`lm-sensors`](https://archlinux.org/packages/?name=lm_sensors) package) to access and display real-time temperature sensor data retrieved from hardware monitoring sensors integrated into computer components such as CPU cores, motherboard, GPUs, and other peripheral devices. The aim of `thermo-scout` is to provide a convenient interface to monitor and visualize these temperature readings in real-time within the terminal environment.
 
@@ -43,14 +43,14 @@ The program will continuously display temperature readings in your terminal wind
 
 ### Version History
 
-- **1.3.0**:
+- **0.3.0**:
   - Added logging functionality with log rotation.
   - Created a new logger.c file for logging-related operations.
 
-- **1.2.0**:
+- **0.2.0**:
   - Entire codebase converted to C.
 
-- **1.1.0**:
+- **0.1.0**:
   - Reduced sleep value for faster screen refresh.
   - Fixed unintended flickering screen behavior by adding the curses library.
   - Fixed issue where the program crashed upon resizing the window.
