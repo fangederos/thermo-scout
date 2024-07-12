@@ -5,11 +5,11 @@
 #include <signal.h>
 #include <errno.h>
 #include <time.h>
+#include "logger.h"
 
 // Global variable to indicate if the terminal has been resized
 volatile sig_atomic_t resize_flag = 0;
 
-// Function to read sensor data using the 'sensors' command
 void read_sensors(char **buffer, size_t *size) {
     FILE *fp = popen("sensors", "r");
     if (fp == NULL) {
@@ -21,7 +21,6 @@ void read_sensors(char **buffer, size_t *size) {
     size_t length = 0;
     char temp_buffer[1024];
 
-    // Read the entire output of the 'sensors' command
     while (fgets(temp_buffer, sizeof(temp_buffer), fp) != NULL) {
         size_t temp_length = strlen(temp_buffer);
         if (length + temp_length >= capacity) {
@@ -40,20 +39,17 @@ void read_sensors(char **buffer, size_t *size) {
     *size = capacity;
 }
 
-// Signal handler for window resize
 void resize_handler(int signum) {
     resize_flag = 1;
 }
 
-// Function to initialize ncurses
 void initialize_ncurses() {
     initscr();
-    curs_set(0);            // Hide cursor
-    nodelay(stdscr, TRUE);  // Make getch() non-blocking
-    signal(SIGWINCH, resize_handler);  // Set up signal handler for window resize
+    curs_set(0);
+    nodelay(stdscr, TRUE);
+    signal(SIGWINCH, resize_handler);
 }
 
-// Function to handle terminal resize
 void handle_resize() {
     if (resize_flag) {
         endwin();
@@ -63,29 +59,26 @@ void handle_resize() {
     }
 }
 
-// Function to display sensor data
 void display_sensors_output(char *sensors_output, int height, int width) {
     clear();
     int line_count = 0;
     char *line = strtok(sensors_output, "\n");
     while (line != NULL && line_count < height - 2) {
-        mvprintw(line_count + 1, 0, "%.*s", width - 1, line);  // Print each line
+        mvprintw(line_count + 1, 0, "%.*s", width - 1, line);
         line = strtok(NULL, "\n");
         line_count++;
     }
     refresh();
 }
 
-// Function to compare current and previous sensor data
 int has_sensor_data_changed(const char *new_data, const char *old_data) {
     return strcmp(new_data, old_data) != 0;
 }
 
 int main(int argc, char *argv[]) {
-    // Default update interval (seconds)
+
     int update_interval = 1;
 
-    // Parse command-line arguments for update interval
     if (argc > 1) {
         update_interval = atoi(argv[1]);
         if (update_interval <= 0) {
@@ -108,6 +101,9 @@ int main(int argc, char *argv[]) {
 
     memset(previous_output, 0, buffer_size);
 
+    // Initialize logger
+    init_logger("sensor.log");
+
     while (1) {
         handle_resize();
 
@@ -119,13 +115,24 @@ int main(int argc, char *argv[]) {
         if (has_sensor_data_changed(sensors_output, previous_output)) {
             strcpy(previous_output, sensors_output);
             display_sensors_output(sensors_output, height, width);
+
+            // Example log entry (modify as per actual sensor output parsing)
+            write_log(LOG_INFO, "device_name", "sensor_name", "sensor_value");
         }
 
         struct timespec req = {update_interval, 0};
-        nanosleep(&req, NULL);  // Sleep for the update interval
+        nanosleep(&req, NULL);
 
         if (getch() != ERR) {
             break;
+        }
+
+        // Periodic log rotation (e.g., every hour)
+        static time_t last_rotation = 0;
+        time_t now = time(NULL);
+        if (difftime(now, last_rotation) >= 3600) { // Rotate log every hour
+            rotate_log();
+            last_rotation = now;
         }
     }
 
@@ -134,4 +141,3 @@ int main(int argc, char *argv[]) {
     endwin();
     return 0;
 }
-
