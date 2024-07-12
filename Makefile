@@ -8,7 +8,7 @@ CFLAGS = -lncurses -Wall -Wextra -pedantic
 TARGET = ts
 
 # Source files
-SRC = main.c logger.c
+SRC = ts.c logger.c
 
 # Object files
 OBJ = $(SRC:.c=.o)
