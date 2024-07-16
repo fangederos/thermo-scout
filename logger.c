@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <sys/stat.h>
+#include <errno.h>
 
 FILE *log_file = NULL;
 
@@ -10,8 +12,15 @@ void init_logger(const char *filename) {
     time_t now = time(NULL);
     struct tm *t = localtime(&now);
     char full_filename[256];
-    strftime(full_filename, sizeof(full_filename) - 1, "%Y-%m-%d_%H-%M-%S_", t);
+    strftime(full_filename, sizeof(full_filename) - 1, "log/%Y-%m-%d_%H-%M-%S_", t);
     strcat(full_filename, filename);
+    
+    // Ensure the 'log' directory exists
+    if (mkdir("log", 0777) && errno != EEXIST) {
+        fprintf(stderr, "Error creating log directory.\n");
+        exit(EXIT_FAILURE);
+    }
+    
     log_file = fopen(full_filename, "a");
     if (!log_file) {
         fprintf(stderr, "Error opening log file.\n");
