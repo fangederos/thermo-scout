@@ -42,12 +42,27 @@ int main(int argc, char *argv[]) {
         const sensors_chip_name *chip;
         int c = 0;
         while ((chip = sensors_get_detected_chips(NULL, &c)) != NULL) {
-            wprintw(win, "Device: %s\n", chip->prefix);
+            int has_temp_sensor = 0;
             const sensors_feature *feature;
             int f = 0;
             while ((feature = sensors_get_features(chip, &f)) != NULL) {
                 const sensors_subfeature *sub;
                 int s = 0;
+                while ((sub = sensors_get_all_subfeatures(chip, feature, &s)) != NULL) {
+                    if (sub->type == SENSORS_SUBFEATURE_TEMP_INPUT) {
+                        has_temp_sensor = 1;
+                        break;
+                    }
+                }
+                if (has_temp_sensor) break;
+            }
+            if (!has_temp_sensor) continue;
+
+            wprintw(win, "Device: %s\n", chip->prefix);
+            f = 0;
+            while ((feature = sensors_get_features(chip, &f)) != NULL) {
+                int s = 0;
+                const sensors_subfeature *sub;
                 while ((sub = sensors_get_all_subfeatures(chip, feature, &s)) != NULL) {
                     if (sub->type == SENSORS_SUBFEATURE_TEMP_INPUT) {
                         double temp;
