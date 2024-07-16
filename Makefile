@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall
+CFLAGS = -Wall -g  # Add the -g flag for debugging information
 
 all: ts
 
