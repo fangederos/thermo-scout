@@ -1,3 +1,4 @@
+
 # thermo-scout 0.3.0
 
 `thermo-scout` calls the [`sensors`](https://www.commandlinux.com/man-page/man1/sensors.1.html) command (part of the [`lm-sensors`](https://archlinux.org/packages/?name=lm_sensors) package) to access and display real-time temperature sensor data retrieved from hardware monitoring sensors integrated into computer components such as CPU cores, motherboard, GPUs, and other peripheral devices. The aim of `thermo-scout` is to provide a convenient interface to monitor and visualize these temperature readings in real-time within the terminal environment.
@@ -21,7 +22,7 @@
    ./ts
    ```
 
-The program will continuously display temperature readings in your terminal window. Use `Ctrl+C` to terminate the process. You can serve an integer as an argument to define the interval of display.
+The program will continuously display temperature readings in your terminal window. Use `Ctrl+C` to terminate the process. You can provide an integer as an argument to define the interval of display.
 
 ### Logging Functionality
 
@@ -34,7 +35,7 @@ The program will continuously display temperature readings in your terminal wind
 
 ### Customization
 
-- You can adjust the refresh interval in the `main()` function of the `main.c` script by changing the value passed to the `nanosleep()` function.
+- You can adjust the refresh interval in the `main()` function of the `ts.c` script by changing the value passed to the `sleep()` function.
 
 ### Troubleshooting
 
@@ -44,6 +45,7 @@ The program will continuously display temperature readings in your terminal wind
 ### Version History
 
 - **0.3.0**:
+  - Enhanced CLI output formatting for better readability.
   - Added logging functionality with log rotation.
   - Created a new logger.c file for logging-related operations.
 
@@ -63,8 +65,5 @@ The program will continuously display temperature readings in your terminal wind
 - [lm-sensors - GitHub](https://github.com/lm-sensors/lm-sensors)
 
 ### To-do
-- Fix and fully implement logging.
-- Proper formatting of the information displayed, instead of merely printing the output of `sensors`, which is not exactly very human-readable.
-- Add graphs to the log file.
 - Implement TUI and GUI for smoother user experience.
-
+- Add visualization of the temperature data using real-time graphs.
