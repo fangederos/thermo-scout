@@ -1,20 +1,21 @@
-#include <stdio.h>        // Standard I/O library
-#include <ncurses.h>      // ncurses library for terminal handling
-#include <unistd.h>       // POSIX operating system API
-#include <stdlib.h>       // Standard library for memory allocation and conversion functions
 #include <sensors/sensors.h>  // sensors library for hardware monitoring
 #include "logger.h"       // Header file for logging functions
 #include "sensor.h"       // Header file for sensor reading functions
 
+#include <stdio.h>        // Standard I/O library
+#include <ncurses.h>      // ncurses library for terminal handling
+#include <unistd.h>       // POSIX operating system API
+#include <stdlib.h>       // Standard library for memory allocation and conversion functions
+
 #define DEFAULT_INTERVAL 1  // Default interval for updating readings in seconds
 
 int main(int argc, char *argv[]) {
-    int interval = DEFAULT_INTERVAL;  // Initialize interval with default value
+    float interval = DEFAULT_INTERVAL;  // Initialize interval with default value
 
     // Check if an interval is provided as a command-line argument
     if (argc > 1) {
-        interval = atoi(argv[1]);  // Convert the argument to an integer
-        if (interval <= 0) {  // Validate the interval value
+        interval = atof(argv[1]);  // Convert the argument to an integer
+        if (interval <= 0 || interval > 1) {  // Validate the interval value
             fprintf(stderr, "Invalid interval specified. Using default interval of %d second(s).\n", DEFAULT_INTERVAL);
             interval = DEFAULT_INTERVAL;  // Revert to default interval if invalid
         }
@@ -38,7 +39,7 @@ int main(int argc, char *argv[]) {
         read_and_log_sensors(win);  
 
         wrefresh(win);  // Refresh the window to show the updated content
-        sleep(interval);  // Sleep for the specified interval before the next update
+        usleep(interval);  // Usleep for the specified interval before the next update (w/ fractional support)
     }
 
     // Cleanup resources before exiting the program

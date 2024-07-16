@@ -1,6 +1,7 @@
 #include "sensor.h"    // Header file for this module
 #include "logger.h"    // Header file for logging functions
 #include <sensors/sensors.h>  // sensors library for hardware monitoring
+
 #include <stdio.h>     // Standard I/O library
 #include <unistd.h>    // POSIX operating system API
 #include <ncurses.h>   // ncurses library for terminal handling
