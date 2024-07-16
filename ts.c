@@ -11,7 +11,26 @@ void print_current_time(WINDOW *win) {
     struct tm *t = localtime(&now);
     char time_str[20];
     strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", t);
-    wprintw(win, "Current Time: %s\n", time_str);
+    wattron(win, A_BOLD | COLOR_PAIR(1));
+    wprintw(win, "Current Time: %s\n\n", time_str);
+    wattroff(win, A_BOLD | COLOR_PAIR(1));
+}
+
+void print_header(WINDOW *win) {
+    wattron(win, A_REVERSE);
+    wprintw(win, "%-20s%-20s%-20s\n", "Device", "Sensor", "Temperature (°C)");
+    wattroff(win, A_REVERSE);
+    wprintw(win, "------------------------------------------------------------\n");
+}
+
+void print_device_header(WINDOW *win, const char *device) {
+    wattron(win, A_BOLD);
+    wprintw(win, "\nDevice: %s\n", device);
+    wattroff(win, A_BOLD);
+}
+
+void print_sensor_reading(WINDOW *win, const char *device, const char *sensor, double temp) {
+    wprintw(win, "  %-20s%-20s%-20.2f\n", device, sensor, temp);
 }
 
 int main(int argc, char *argv[]) {
@@ -29,6 +48,8 @@ int main(int argc, char *argv[]) {
 
     // Initialize curses
     initscr();
+    start_color();
+    init_pair(1, COLOR_YELLOW, COLOR_BLACK);
     cbreak();
     noecho();
     curs_set(FALSE);
@@ -38,6 +59,7 @@ int main(int argc, char *argv[]) {
     while (1) {
         werase(win);  // Clear the window
         print_current_time(win);  // Print current local time
+        print_header(win);  // Print the table header
 
         const sensors_chip_name *chip;
         int c = 0;
@@ -58,7 +80,7 @@ int main(int argc, char *argv[]) {
             }
             if (!has_temp_sensor) continue;
 
-            wprintw(win, "Device: %s\n", chip->prefix);
+            print_device_header(win, chip->prefix);  // Print device header
             f = 0;
             while ((feature = sensors_get_features(chip, &f)) != NULL) {
                 int s = 0;
@@ -70,12 +92,12 @@ int main(int argc, char *argv[]) {
                             char value[16];
                             snprintf(value, sizeof(value), "%.2f", temp);
                             write_log(LOG_INFO, chip->prefix, feature->name, value);
-                            wprintw(win, "  %s-%s: %.2f°C\n", chip->prefix, feature->name, temp);
+                            print_sensor_reading(win, chip->prefix, feature->name, temp);
                         }
                     }
                 }
             }
-            wprintw(win, "------------------------\n");
+            wprintw(win, "------------------------------------------------------------\n");
         }
         wrefresh(win);  // Refresh the window to show the updates
         sleep(interval);
