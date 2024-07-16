@@ -9,4 +9,4 @@ void init_logger(const char *filename);
 void close_logger();
 void write_log(int severity, const char *device, const char *sensor, const char *value);
 
-#endif
+#endif // LOGGER_H
