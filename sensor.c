@@ -7,18 +7,20 @@
 #include <ncurses.h>   // ncurses library for terminal handling
 #include <time.h>      // Time handling functions
 
+#define BUF_SIZE 256  // Buffer size for string operations
+
 // Function to read sensor data, log it, and print it to the ncurses window
 void read_and_log_sensors(WINDOW *win) {
+    static char buffer[BUF_SIZE];  // Static buffer to reuse for string operations
     const sensors_chip_name *chip;  // Pointer to hold the detected chip name
     int c = 0;  // Counter for detected chips
 
     // Get the current time and print it at the top of the window
     time_t now = time(NULL);
     struct tm *t = localtime(&now);
-    char time_str[64];
-    strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", t);
+    strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", t);
     wattron(win, A_BOLD);  // Enable bold text attribute
-    mvwprintw(win, 0, 0, "Current Time: %s", time_str);
+    mvwprintw(win, 0, 0, "Current Time: %s", buffer);
     wattroff(win, A_BOLD);  // Disable bold text attribute
 
     // Print the header for the sensor readings table
@@ -68,9 +70,8 @@ void read_and_log_sensors(WINDOW *win) {
                     double temp;  // Variable to hold the temperature reading
                     // Get the temperature value
                     if (sensors_get_value(chip, sub->number, &temp) == 0) {
-                        char value[16];  // Buffer to hold the formatted temperature value
-                        snprintf(value, sizeof(value), "%.2f", temp);  // Format the temperature value
-                        write_log(LOG_INFO, chip->prefix, feature->name, value);  // Log the sensor reading
+                        snprintf(buffer, sizeof(buffer), "%.2f", temp);  // Format the temperature value
+                        write_log(LOG_INFO, chip->prefix, feature->name, buffer);  // Log the sensor reading
                         // Print the sensor reading to the window
                         mvwprintw(win, line++, 0, "%-15s | %-15s | %.2f", chip->prefix, feature->name, temp);
                     }

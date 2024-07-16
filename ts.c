@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 
     // Initialize ncurses mode
     initscr();          // Initialize the ncurses screen
-    timeout(5000);      // Set input timeout for getch() to 5000 milliseconds
+    timeout(100);      // Set input timeout for getch()
     noecho();           // Disable echoing of typed characters
     cbreak();           // Disable line buffering, making input immediately available
     WINDOW *win = newwin(24, 80, 0, 0);  // Create a new window with dimensions 24x80 starting at position (0, 0)
@@ -39,7 +39,11 @@ int main(int argc, char *argv[]) {
         read_and_log_sensors(win);  
 
         wrefresh(win);  // Refresh the window to show the updated content
-        usleep(interval);  // Usleep for the specified interval before the next update (w/ fractional support)
+        usleep(interval * 1000000);  // Usleep for the specified interval before the next update (w/ fractional support)
+		
+		if (getch() == 'q') {
+			break;
+		}
     }
 
     // Cleanup resources before exiting the program

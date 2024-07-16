@@ -1,11 +1,18 @@
+# Variables
 CC = gcc
-CFLAGS = -Wall -g  # Add the -g flag for debugging information
+CFLAGS = -Wall -pg
+LDFLAGS = -lncurses -lsensors
+TARGET = ts
+OBJS = ts.o logger.o sensor.o
 
-all: ts
+# Default target
+all: $(TARGET)
 
-ts: ts.o logger.o sensor.o
-	$(CC) $(CFLAGS) -o ts ts.o logger.o sensor.o -lncurses -lsensors
+# Linking
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(LDFLAGS)
 
+# Compilation
 ts.o: ts.c logger.h sensor.h
 	$(CC) $(CFLAGS) -c ts.c
 
@@ -15,5 +22,7 @@ logger.o: logger.c logger.h
 sensor.o: sensor.c sensor.h logger.h
 	$(CC) $(CFLAGS) -c sensor.c
 
+# Clean up
 clean:
-	rm -f *.o ts
+	rm -f *.o $(TARGET) gmon.out
+
