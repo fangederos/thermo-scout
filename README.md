@@ -65,30 +65,15 @@
 
 The program will continuously display temperature readings in your terminal window. Use `Ctrl+C` to terminate the process. You can provide an integer as an argument to define the interval of display.
 
-### Logging Functionality
-
-- A log file is created upon execution, with the name format `[YYYY-MM-DD_HH-MM-SS]_sensor.log`.
-- The log entries include local date and time (adhering to ISO 8601), levels of severity (INFO, WARNING, ERROR), the name of the device, the sensors of that device, and the value the sensors display, formatted as:
-  ```
-  [timestamp]::[SEVERITY]::[device]-[sensor]: [value]
-  ```
-- Log rotation involves periodically archiving and deleting old log files.
-
 ### Customization
 
-- You can adjust the refresh interval in the `main()` function of the `ts.c` script by changing the value passed to the `sleep()` function.
-
-### Troubleshooting
-
-- If you encounter any issues with the script, ensure that the `sensors` command is working correctly on your system.
-- Ensure that your system has necessary permissions for creating and writing log files.
+- `thermo scout` accepts integer and decimal values as an argument of it's refresh rate.
 
 ### Version History
 
 - **0.3.0**:
   - Enhanced CLI output formatting for better readability.
-  - Added logging functionality with log rotation.
-  - Created a new logger.c file for logging-related operations.
+  - Added logging functionality.
 
 - **0.2.0**:
   - Entire codebase converted to C.
