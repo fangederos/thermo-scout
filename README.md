@@ -1,4 +1,4 @@
-# thermmo-sccout
+# thermo-sccout
 
 ```
          __  __                                                          __ 
