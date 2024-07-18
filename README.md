@@ -48,8 +48,8 @@
 
 ### Prerequisites
 
-- The [`lm-sensors`](https://archlinux.org/packages/?name=lm_sensors) package installed to enable temperature monitoring.
-- `sensors-detect` is a `lm-sensors` command that must be run beforehand, as it will scan to find the sensors in your hardware. **Go through the execution of `sensors-detect` very carefully, as some of the scanning options have been known to cause issues in some computers. For more, refer to the Arch Wiki's `lm-sensors` page.
+- The `lm-sensors` package installed to enable temperature monitoring.
+- `sensors-detect` is a `lm-sensors` command that must be run beforehand, as it will scan to find the sensors in your hardware. **Go through the execution of `sensors-detect` very carefully**, as **some of the scanning options have been known to cause issues** in some computers. For more, refer to the [Arch Wiki's `lm-sensors` page.](https://wiki.archlinux.org/title/lm_sensors#Laptop_screen_issues_after_running_sensors-detect)
 
 ### Installation and Usage
 
