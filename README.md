@@ -44,12 +44,12 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                                                                                                                                
 ```
-`thermo-scout` calls the [`sensors`](https://www.commandlinux.com/man-page/man1/sensors.1.html) command (part of the [`lm-sensors`](https://archlinux.org/packages/?name=lm_sensors) package) to access and display real-time temperature sensor data retrieved from hardware monitoring sensors integrated into computer components such as CPU cores, motherboard, GPUs, and other peripheral devices. The aim of `thermo-scout` is to provide a convenient interface to monitor and visualize these temperature readings in real-time within the terminal environment.
+`thermo-scout` calls the [`sensors`](https://www.commandlinux.com/man-page/man1/sensors.1.html) command (part of the [`lm_sensors`](https://archlinux.org/packages/?name=lm_sensors) package) to access and display real-time temperature sensor data retrieved from hardware monitoring sensors integrated into computer components such as CPU cores, motherboard, GPUs, and other peripheral devices. The aim of `thermo-scout` is to provide a convenient interface to monitor and visualize these temperature readings in real-time within the terminal environment.
 
 ### Prerequisites
 
-- The `lm-sensors` package installed to enable temperature monitoring.
-- `sensors-detect` is a `lm-sensors` command that must be run beforehand, as it will scan to find the sensors in your hardware. **Go through the execution of `sensors-detect` very carefully**, as **some of the scanning options have been known to cause issues** in some computers. For more, refer to the [Arch Wiki's `lm-sensors` page.](https://wiki.archlinux.org/title/lm_sensors#Laptop_screen_issues_after_running_sensors-detect)
+- The `lm_sensors` package installed to enable temperature monitoring.
+- `sensors-detect` is a `lm_sensors` command that must be run beforehand, as it will scan to find the sensors in your hardware. **Go through the execution of `sensors-detect` very carefully**, as **some of the scanning options have been known to cause issues** in some computers. For more, refer to the [Arch Wiki's `lm_sensors` page.](https://wiki.archlinux.org/title/lm_sensors#Laptop_screen_issues_after_running_sensors-detect)
 
 ### Installation and Usage
 
@@ -65,11 +65,11 @@
    ./ts
    ```
 
-The program will continuously display temperature readings in your terminal window. Use `Ctrl+C` to terminate the process. You can provide an integer as an argument to define the interval of display.
+The program will continuously display temperature readings in your terminal window. Use `q` or `Ctrl+C` to terminate the process.
 
 ### Customization
 
-- `thermo scout` accepts integer and decimal values as an argument of it's refresh rate.
+- `ts` accepts integer and decimal values as an argument of it's refresh rate.
 
 ### Version History
 
@@ -90,7 +90,7 @@ The program will continuously display temperature readings in your terminal wind
 
 - [lm_sensors - ArchWiki](https://wiki.archlinux.org/title/lm_sensors)
 - [lm_sensors - HWMon Wiki](https://hwmon.wiki.kernel.org/lm_sensors)
-- [lm-sensors - GitHub](https://github.com/lm-sensors/lm-sensors)
+- [lm_sensors - GitHub](https://github.com/lm-sensors/lm-sensors)
 
 ### To-do
 - Implement TUI and GUI for smoother user experience.
