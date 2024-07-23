@@ -25,4 +25,3 @@ sensor.o: sensor.c sensor.h logger.h
 # Clean up
 clean:
 	rm -f *.o $(TARGET) gmon.out
-
